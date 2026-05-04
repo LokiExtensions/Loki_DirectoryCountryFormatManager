@@ -20,15 +20,21 @@
                     <argument name="fields" xsi:type="array">
                         <item name="country_id" xsi:type="array">
                             <item name="label" xsi:type="string">Country</item>
-                            <item name="field_type" xsi:type="string">input</item>
+                            <item name="field_type" xsi:type="string">select</item>
+                            <item name="options" xsi:type="object">Loki\AdminComponents\ViewModel\Options\CountryOptions</item>
                         </item>
                         <item name="type" xsi:type="array">
                             <item name="label" xsi:type="string">Type</item>
-                            <item name="field_type" xsi:type="string">input</item>
+                            <item name="field_type" xsi:type="string">select</item>
+                            <item name="options" xsi:type="object">Loki\DirectoryCountryFormatManager\ViewModel\Options\AddressTemplateTypeOptions</item>
                         </item>
                         <item name="format" xsi:type="array">
                             <item name="label" xsi:type="string">Format</item>
                             <item name="field_type" xsi:type="string">textarea</item>
+                            <item name="allow_html" xsi:type="boolean">true</item>
+                            <item name="field_attributes" xsi:type="array">
+                                <item name="rows" xsi:type="number">20</item>
+                            </item>
                         </item>
                     </argument>
                 </arguments>
