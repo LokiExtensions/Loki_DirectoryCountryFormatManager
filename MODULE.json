@@ -11,8 +11,7 @@
     "skip_css_utils": false,
     "sequence": [
         "Loki_AdminComponents",
-        "Magento_Backend",
-        "Magento_Directory"
+        "Magento_Backend"
     ],
     "modules": [
         "Loki_AdminComponents",
