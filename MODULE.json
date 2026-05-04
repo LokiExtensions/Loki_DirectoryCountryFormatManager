@@ -10,9 +10,9 @@
     "skip_magento_versions": [],
     "skip_css_utils": false,
     "sequence": [
-        "Magento_Directory",
+        "Loki_AdminComponents",
         "Magento_Backend",
-        "Loki_AdminComponents"
+        "Magento_Directory"
     ],
     "modules": [
         "Loki_AdminComponents",
