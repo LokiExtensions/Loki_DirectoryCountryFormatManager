@@ -1,0 +1,38 @@
+{
+    "composer_name": "loki/magento2-directory-country-format-manager",
+    "module_name": "Loki_DirectoryCountryFormatManager",
+    "php_versions": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+    ],
+    "skip_magento_versions": [],
+    "skip_css_utils": false,
+    "sequence": [
+        "Loki_AdminComponents",
+        "Magento_Backend"
+    ],
+    "modules": [
+        "Loki_AdminComponents",
+        "Loki_Components",
+        "Loki_CssUtils",
+        "Magento_Backend",
+        "Magento_Catalog",
+        "Magento_Customer",
+        "Magento_Directory",
+        "Magento_Eav",
+        "Magento_Store",
+        "Magento_Theme",
+        "Magento_Ui",
+        "Yireo_CspUtilities"
+    ],
+    "components": [
+        "directory_country_format_manager.form",
+        "directory_country_format_manager.grid"
+    ],
+    "config": [],
+    "tests": [],
+    "phpcs_severity": "7",
+    "phpstan_level": "4"
+}

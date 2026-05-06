@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Loki_DirectoryCountryFormatManager::index"
+             title="Country Format Manager"
+             module="Loki_DirectoryCountryFormatManager"
+             sortOrder="50"
+             parent="Magento_Backend::stores_settings"
+             resource="Loki_DirectoryCountryFormatManager::grid"
+             action="directory_country_format_manager/index/grid"/>
+    </menu>
+</config>

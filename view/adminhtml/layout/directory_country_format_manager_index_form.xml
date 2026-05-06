@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:View/Layout:etc/page_configuration.xsd">
+    <update handle="loki_admin_components_form"/>
+
+    <head>
+        <title>Directory Country Format Manager Form</title>
+    </head>
+
+    <body>
+        <referenceContainer name="content">
+            <block
+                name="directory_country_format_manager.form"
+                template="Loki_AdminComponents::form.phtml">
+                <arguments>
+                    <argument name="provider" xsi:type="string">Magento\Directory\Model\ResourceModel\Country\Format\Collection</argument>
+                    <argument name="resource_model" xsi:type="string">Magento\Directory\Model\ResourceModel\Country\Format</argument>
+                    <argument name="factory" xsi:type="string">Magento\Directory\Model\Country\FormatFactory</argument>
+                    <argument name="index_url" xsi:type="string">directory_country_format_manager/index/grid</argument>
+                    <argument name="fields" xsi:type="array">
+                        <item name="country_id" xsi:type="array">
+                            <item name="label" xsi:type="string">Country</item>
+                            <item name="field_type" xsi:type="string">select</item>
+                            <item name="options" xsi:type="object">Loki\AdminComponents\ViewModel\Options\CountryOptions</item>
+                        </item>
+                        <item name="type" xsi:type="array">
+                            <item name="label" xsi:type="string">Type</item>
+                            <item name="field_type" xsi:type="string">select</item>
+                            <item name="options" xsi:type="object">Loki\DirectoryCountryFormatManager\ViewModel\Options\AddressTemplateTypeOptions</item>
+                        </item>
+                        <item name="format" xsi:type="array">
+                            <item name="label" xsi:type="string">Format</item>
+                            <item name="field_type" xsi:type="string">textarea</item>
+                            <item name="allow_html" xsi:type="boolean">true</item>
+                            <item name="field_attributes" xsi:type="array">
+                                <item name="rows" xsi:type="number">20</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

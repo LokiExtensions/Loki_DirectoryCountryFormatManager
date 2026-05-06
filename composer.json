@@ -1,0 +1,22 @@
+{
+    "name": "loki/magento2-directory-country-format-manager",
+    "version": "1.0.0",
+    "description": "Allowing for country-specific address templates",
+    "type": "magento2-module",
+    "require": {
+        "loki/magento2-admin-components": "~0.6.3",
+        "magento/framework": "^103.0",
+        "magento/module-backend": "^102.0"
+    },
+    "license": [
+        "OSL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Loki\\DirectoryCountryFormatManager\\": ""
+        }
+    }
+}
