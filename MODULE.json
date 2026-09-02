@@ -2,10 +2,10 @@
     "composer_name": "loki/magento2-directory-country-format-manager",
     "module_name": "Loki_DirectoryCountryFormatManager",
     "php_versions": [
-        "8.1",
         "8.2",
         "8.3",
-        "8.4"
+        "8.4",
+        "8.5"
     ],
     "skip_magento_versions": [],
     "skip_css_utils": false,
