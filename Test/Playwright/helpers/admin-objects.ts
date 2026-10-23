@@ -243,7 +243,8 @@ export class CountryFormatFormPage {
 
     /**
      * Delete the current item by submitting the delete action and waiting for it to be processed. The "Delete" button
-     * itself is not used, because it navigates away before its queued AJAX request has been sent
+     * itself is not used for cleanup, because in Loki_AdminComponents 0.8.2 and older it navigates away before its
+     * queued AJAX request has been processed
      */
     async delete() {
         const response = waitForLokiPost(this.page);

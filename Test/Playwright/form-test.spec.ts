@@ -81,12 +81,7 @@ test.describe('Loki_DirectoryCountryFormatManager form', () => {
                 await createCountryFormat(page, 'BE', 'pdf', marker, marker);
                 await grid.edit(marker);
                 await new CountryFormatFormPage(page).clickDelete();
-
-                // The button navigates to the grid while the delete request is still being processed
-                await expect(async () => {
-                    await grid.open();
-                    await expect(grid.getRow(marker)).toHaveCount(0, {timeout: 1000});
-                }).toPass({timeout: 20_000});
+                await expect(grid.getRow(marker)).toHaveCount(0);
             } finally {
                 await deleteTestCountryFormats(page);
             }
