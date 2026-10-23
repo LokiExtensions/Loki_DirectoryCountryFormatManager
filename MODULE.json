@@ -33,7 +33,11 @@
         "directory_country_format_manager.grid"
     ],
     "config": [],
-    "tests": [],
+    "tests": {
+        "unit": 11,
+        "integration": 24,
+        "functional": 14
+    },
     "phpcs_severity": "7",
     "phpstan_level": "4"
 }
