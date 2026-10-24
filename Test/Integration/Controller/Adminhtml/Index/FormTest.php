@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Loki\DirectoryCountryFormatManager\Test\Integration\Controller\Adminhtml\Index;
 
 use Loki\DirectoryCountryFormatManager\Test\Integration\FixtureTrait\CreateCountryFormat;
+use Magento\Framework\App\Response\Http as HttpResponse;
 use Magento\TestFramework\Fixture\AppArea;
 use Magento\TestFramework\Fixture\DbIsolation;
 use Magento\TestFramework\TestCase\AbstractBackendController;
@@ -26,9 +27,11 @@ final class FormTest extends AbstractBackendController
     {
         $this->dispatch($this->uri);
 
-        $this->assertSame(200, $this->getResponse()->getHttpResponseCode());
+        /** @var HttpResponse $response */
+        $response = $this->getResponse();
+        $this->assertSame(200, $response->getHttpResponseCode());
 
-        $body = (string)$this->getResponse()->getBody();
+        $body = (string)$response->getBody();
         $this->assertStringContainsString('Create Country Format', $body);
         $this->assertStringNotContainsString('Edit Country Format', $body);
 
@@ -52,9 +55,11 @@ final class FormTest extends AbstractBackendController
 
         $this->dispatch($this->uri . '/id/' . $countryFormat->getId());
 
-        $this->assertSame(200, $this->getResponse()->getHttpResponseCode());
+        /** @var HttpResponse $response */
+        $response = $this->getResponse();
+        $this->assertSame(200, $response->getHttpResponseCode());
 
-        $body = (string)$this->getResponse()->getBody();
+        $body = (string)$response->getBody();
         $this->assertStringContainsString('Edit Country Format', $body);
         $this->assertStringContainsString('LOKI-FORM-EDIT', $body);
     }

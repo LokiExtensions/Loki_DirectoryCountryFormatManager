@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Loki\DirectoryCountryFormatManager\Test\Integration\Controller\Adminhtml\Index;
 
 use Loki\DirectoryCountryFormatManager\Test\Integration\FixtureTrait\CreateCountryFormat;
+use Magento\Framework\App\Response\Http as HttpResponse;
 use Magento\TestFramework\Fixture\AppArea;
 use Magento\TestFramework\Fixture\DbIsolation;
 use Magento\TestFramework\TestCase\AbstractBackendController;
@@ -26,9 +27,11 @@ final class GridTest extends AbstractBackendController
     {
         $this->dispatch($this->uri);
 
-        $this->assertSame(200, $this->getResponse()->getHttpResponseCode());
+        /** @var HttpResponse $response */
+        $response = $this->getResponse();
+        $this->assertSame(200, $response->getHttpResponseCode());
 
-        $body = (string)$this->getResponse()->getBody();
+        $body = (string)$response->getBody();
         $this->assertStringContainsString('Directory Country Format Manager', $body);
         $this->assertStringContainsString('data-role="grid"', $body);
         $this->assertStringContainsString('Add New', $body);
@@ -39,7 +42,9 @@ final class GridTest extends AbstractBackendController
         $this->createCountryFormat('NL', 'html', 'LOKI-GRID-COLUMNS');
 
         $this->dispatch($this->uri);
-        $body = (string)$this->getResponse()->getBody();
+        /** @var HttpResponse $response */
+        $response = $this->getResponse();
+        $body = (string)$response->getBody();
 
         preg_match_all('#<th[^>]+data-column="([^"]+)"#', $body, $matches);
         $this->assertSame(['country_format_id', 'country_id', 'type', 'format'], $matches[1]);
@@ -50,7 +55,9 @@ final class GridTest extends AbstractBackendController
         $countryFormat = $this->createCountryFormat('BE', 'oneline', 'LOKI-GRID-ROW {{var city}}');
 
         $this->dispatch($this->uri);
-        $body = (string)$this->getResponse()->getBody();
+        /** @var HttpResponse $response */
+        $response = $this->getResponse();
+        $body = (string)$response->getBody();
 
         $row = $this->getRowHtml($body, 'LOKI-GRID-ROW');
         $this->assertStringContainsString('data-row-id="' . $countryFormat->getId() . '"', $row);
