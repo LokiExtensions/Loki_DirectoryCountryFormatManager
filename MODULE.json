@@ -15,17 +15,28 @@
     ],
     "modules": [
         "Loki_AdminComponents",
+        "Loki_Base",
         "Loki_Components",
         "Loki_CssUtils",
+        "Magento_AdminNotification",
         "Magento_Backend",
         "Magento_Catalog",
+        "Magento_Cms",
+        "Magento_Config",
+        "Magento_Csp",
         "Magento_Customer",
         "Magento_Directory",
         "Magento_Eav",
+        "Magento_Indexer",
+        "Magento_Payment",
+        "Magento_Quote",
+        "Magento_Rule",
         "Magento_Sales",
+        "Magento_SalesSequence",
         "Magento_Store",
         "Magento_Theme",
         "Magento_Ui",
+        "Magento_Variable",
         "Yireo_CspUtilities"
     ],
     "components": [
@@ -34,9 +45,9 @@
     ],
     "config": [],
     "tests": {
-        "unit": 11,
-        "integration": 24,
-        "functional": 14
+        "unit": 9,
+        "integration": 18,
+        "functional": 0
     },
     "phpcs_severity": "7",
     "phpstan_level": "4"
