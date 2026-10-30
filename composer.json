@@ -1,6 +1,6 @@
 {
     "name": "loki/magento2-directory-country-format-manager",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Allowing for country-specific address templates",
     "type": "magento2-module",
     "require": {
