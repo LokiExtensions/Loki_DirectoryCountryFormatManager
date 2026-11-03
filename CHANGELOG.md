@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.1] - 08 August 2026
+## [1.0.1] - 03 November 2026
 ### Fixed
 - Loosen constraint with Loki Admin Components
 
