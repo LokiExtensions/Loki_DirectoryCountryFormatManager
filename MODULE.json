@@ -28,6 +28,7 @@
         "Magento_Directory",
         "Magento_Eav",
         "Magento_Indexer",
+        "Magento_MediaGalleryUiApi",
         "Magento_Payment",
         "Magento_Quote",
         "Magento_Rule",
