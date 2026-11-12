@@ -1,17 +1,11 @@
-.gitlab-ci-local
+.gitlab-ci-local/
 
-.gitlab-ci-local
 
-.gitlab-ci-local
 
-.gitlab-ci-local
-.playwright
-.opencode
+.playwright/
+.opencode/
 .php-cs-fixer.cache
 .ai/
-.playwright/
 node_modules/
-.opencode/
-.gitlab-ci-local/
 .yireo-extension-builder.json
 MEMORY.md
