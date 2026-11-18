@@ -9,6 +9,7 @@ use Laminas\Http\Headers;
 use Loki\Components\Util\Security\AjaxSignature;
 use Magento\Framework\Acl\Builder as AclBuilder;
 use Magento\Framework\App\Request\Http as HttpRequest;
+use Magento\Framework\Authorization\RoleLocatorInterface;
 use Magento\Framework\Exception\AuthorizationException;
 
 trait PostFormAction
@@ -56,6 +57,6 @@ trait PostFormAction
     private function deny(string $resource): void
     {
         $acl = $this->_objectManager->get(AclBuilder::class)->getAcl();
-        $acl->deny(null, $resource);
+        $acl->deny($this->_objectManager->get(RoleLocatorInterface::class)->getAclRoleId(), $resource);
     }
 }
