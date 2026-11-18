@@ -28,6 +28,35 @@ bin/magento module:enable Loki_DirectoryCountryFormatManager
 ### Usage
 Navigate to `Stores > Settings > Country Format Manager` within the Magento Admin Panel.
 
+The grid lists all country formats with their country name and type. You can search through the country, type and format, and filter by country and type.
+
+When adding or editing a country format, select a country and an address template type and enter the format. Each combination of country and type can only be used once. If you leave the format empty, the default address template of the selected type (`Stores > Configuration > Customers > Customer Configuration > Address Templates`) is used as a starting point.
+
+The available types are read from the address formats of Magento (`etc/address_formats.xml`): by default `Text`, `Text One Line`, `HTML` and `PDF`. Address formats added by other modules are listed as well.
+
+### Template syntax
+A format uses the same syntax as the address templates in the Magento configuration, for instance:
+
+```
+{{depend company}}{{var company}}<br />{{/depend}}
+{{var firstname}} {{var lastname}}<br />
+{{if street1}}{{var street1}}<br />{{/if}}
+{{var postcode}} {{var city}}<br />
+{{var country}}
+```
+
+Common variables are `prefix`, `firstname`, `middlename`, `lastname`, `suffix`, `company`, `street1` to `street4`, `city`, `region`, `postcode`, `country`, `telephone`, `fax` and `vat_id`. Use `{{depend name}}...{{/depend}}` or `{{if name}}...{{/if}}` to only output a part when a variable is not empty.
+
+### Permissions (ACL)
+The ACL resources are found under `Stores > Settings > Country Format Manager`:
+
+- `Loki_DirectoryCountryFormatManager::grid` (View Country Formats): Open and search the grid;
+- `Loki_DirectoryCountryFormatManager::form` (Open Country Format Form): Open the form;
+- `Loki_DirectoryCountryFormatManager::save` (Save Country Formats): Create and update country formats;
+- `Loki_DirectoryCountryFormatManager::delete` (Delete Country Formats): Delete country formats;
+
+Buttons that an admin user is not allowed to use are hidden.
+
 ## Current status
 
 <!-- badges.test.start -->
