@@ -21,13 +21,13 @@ class Grid extends Action
 
     public function execute(): Page
     {
-        $title = 'Directory Country Format Manager';
+        $title = __('Directory Country Format Manager');
 
         /** @var Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('Loki_DirectoryCountryFormatManager::index');
-        $resultPage->addBreadcrumb(__($title), __($title));
-        $resultPage->getConfig()->getTitle()->prepend(__($title));
+        $resultPage->addBreadcrumb($title, $title);
+        $resultPage->getConfig()->getTitle()->prepend($title);
 
         return $resultPage;
     }

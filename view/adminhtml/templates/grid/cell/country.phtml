@@ -1,0 +1,21 @@
+<?php
+declare(strict_types=1);
+
+use Loki\Components\Factory\ViewModelFactory;
+use Loki\DirectoryCountryFormatManager\ViewModel\CountryName;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+/** @var Escaper $escaper */
+/** @var Template $block */
+/** @var ViewModelFactory $viewModelFactory */
+
+$countryId = (string)$block->getValue();
+/** @var CountryName $countryNameViewModel */
+$countryNameViewModel = $viewModelFactory->create(CountryName::class);
+$countryName = $countryNameViewModel->getName($countryId);
+?>
+<?= $escaper->escapeHtml($countryName) ?>
+<?php if ($countryName !== $countryId): ?>
+    (<code><?= $escaper->escapeHtml($countryId) ?></code>)
+<?php endif; ?>

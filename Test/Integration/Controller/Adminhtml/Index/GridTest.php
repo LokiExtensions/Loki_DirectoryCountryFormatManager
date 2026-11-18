@@ -61,8 +61,9 @@ final class GridTest extends AbstractBackendController
 
         $row = $this->getRowHtml($body, 'LOKI-GRID-ROW');
         $this->assertStringContainsString('data-row-id="' . $countryFormat->getId() . '"', $row);
-        $this->assertStringContainsString('BE', $row);
-        $this->assertStringContainsString('oneline', $row);
+        $this->assertStringContainsString('Belgium', $row);
+        $this->assertStringContainsString('<code>BE</code>', $row);
+        $this->assertStringContainsString('Text One Line', $row);
     }
 
     private function getRowHtml(string $body, string $needle): string

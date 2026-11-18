@@ -39,8 +39,8 @@ test.describe('Loki_DirectoryCountryFormatManager grid', () => {
                 await expect(grid.getHeaders()).toHaveText(['ID', 'Country', 'Type', 'Format']);
 
                 const row = grid.getRow(marker);
-                await expect(row).toContainText('DE');
-                await expect(row).toContainText('text');
+                await expect(row).toContainText('Germany (DE)');
+                await expect(row).toContainText('Text');
                 await expect(row.getByRole('link', {name: 'Edit'})).toBeVisible();
             } finally {
                 await deleteTestCountryFormats(page);
