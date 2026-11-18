@@ -3,6 +3,7 @@
     <module name="Loki_DirectoryCountryFormatManager">
         <sequence>
             <module name="Loki_AdminComponents"/>
+            <module name="Loki_Components"/>
             <module name="Magento_Backend"/>
             <module name="Magento_Customer"/>
             <module name="Magento_Directory"/>
