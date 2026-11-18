@@ -4,8 +4,16 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Loki_DirectoryCountryFormatManager::grid" title="Loki DirectoryCountryFormatManager Grid" sortOrder="10"/>
-                <resource id="Loki_DirectoryCountryFormatManager::form" title="Loki DirectoryCountryFormatManager Form" sortOrder="10"/>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Loki_DirectoryCountryFormatManager::country_formats" title="Country Format Manager" translate="title" sortOrder="50">
+                            <resource id="Loki_DirectoryCountryFormatManager::grid" title="View Country Formats" translate="title" sortOrder="10"/>
+                            <resource id="Loki_DirectoryCountryFormatManager::form" title="Open Country Format Form" translate="title" sortOrder="20"/>
+                            <resource id="Loki_DirectoryCountryFormatManager::save" title="Save Country Formats" translate="title" sortOrder="30"/>
+                            <resource id="Loki_DirectoryCountryFormatManager::delete" title="Delete Country Formats" translate="title" sortOrder="40"/>
+                        </resource>
+                    </resource>
+                </resource>
             </resource>
         </resources>
     </acl>
