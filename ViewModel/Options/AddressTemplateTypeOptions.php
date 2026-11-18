@@ -2,36 +2,50 @@
 
 namespace Loki\DirectoryCountryFormatManager\ViewModel\Options;
 
-use Magento\Directory\Helper\Data as DirectoryHelper;
+use Magento\Customer\Model\Address\Config as AddressConfig;
 use Magento\Framework\Data\OptionSourceInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 
 class AddressTemplateTypeOptions implements ArgumentInterface, OptionSourceInterface
 {
-    public function toOptionArray()
+    public function __construct(
+        private readonly AddressConfig $addressConfig,
+    ) {
+    }
+
+    public function toOptionArray(): array
     {
         $options = [];
-
-        $options[] = [
-            'value' => 'text',
-            'label' => 'Text',
-        ];
-
-        $options[] = [
-            'value' => 'oneline',
-            'label' => 'Text One Line',
-        ];
-
-        $options[] = [
-            'value' => 'html',
-            'label' => 'HTML',
-        ];
-
-        $options[] = [
-            'value' => 'pdf',
-            'label' => 'PDF',
-        ];
+        foreach ($this->addressConfig->getFormats() as $format) {
+            $code = (string)$format->getCode();
+            $options[] = [
+                'value' => $code,
+                'label' => (string)__((string)$format->getTitle() ?: $code),
+            ];
+        }
 
         return $options;
+    }
+
+    public function getLabel(string $code): string
+    {
+        foreach ($this->toOptionArray() as $option) {
+            if ($option['value'] === $code) {
+                return $option['label'];
+            }
+        }
+
+        return $code;
+    }
+
+    public function getDefaultFormat(string $code): string
+    {
+        foreach ($this->addressConfig->getFormats() as $format) {
+            if ((string)$format->getCode() === $code) {
+                return (string)$format->getDefaultFormat();
+            }
+        }
+
+        return '';
     }
 }
