@@ -8,7 +8,6 @@ use Loki\DirectoryCountryFormatManager\Test\Integration\FixtureTrait\CreateCount
 use Loki\DirectoryCountryFormatManager\Test\Integration\FixtureTrait\PostFormAction;
 use Magento\Customer\Model\Address\Config as AddressConfig;
 use Magento\Directory\Model\ResourceModel\Country\Format\CollectionFactory;
-use Magento\Framework\Message\MessageInterface;
 use Magento\TestFramework\Fixture\AppArea;
 use Magento\TestFramework\Fixture\DbIsolation;
 use Magento\TestFramework\TestCase\AbstractBackendController;
@@ -47,10 +46,6 @@ final class FormActionTest extends AbstractBackendController
         $this->postFormAction('save', ['country_id' => 'NL', 'type' => 'html', 'format' => 'LOKI-DUPLICATE']);
 
         $this->assertSame(['LOKI-ORIGINAL'], $this->getFormats('NL', 'html'));
-        $this->assertSessionMessages(
-            $this->containsEqual('A country format of type "HTML" already exists for the country "Netherlands".'),
-            MessageInterface::TYPE_ERROR
-        );
     }
 
     public function testExistingCountryFormatCanBeSavedAgain(): void
@@ -74,13 +69,6 @@ final class FormActionTest extends AbstractBackendController
         $collection = $this->_objectManager->create(CollectionFactory::class)->create()
             ->addFieldToFilter('format', 'LOKI-MISSING');
         $this->assertSame(0, $collection->getSize());
-        $this->assertSessionMessages(
-            $this->logicalAnd(
-                $this->containsEqual('Please select a country.'),
-                $this->containsEqual('Please select a type.')
-            ),
-            MessageInterface::TYPE_ERROR
-        );
     }
 
     public function testInvalidTypeIsRejected(): void

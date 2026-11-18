@@ -234,6 +234,13 @@ export class CountryFormatFormPage {
         await new CountryFormatGridPage(this.page).expectToBeLoaded();
     }
 
+    async saveAndCloseWithErrors() {
+        const response = waitForLokiPost(this.page);
+        await getButton(this.page, 'Save & Close').click();
+        await response;
+        await expect(this.page).toHaveURL(new RegExp(FORM_PATH));
+    }
+
     async saveAndContinue() {
         const response = waitForLokiPost(this.page);
         await getButton(this.page, 'Save & Continue').click();

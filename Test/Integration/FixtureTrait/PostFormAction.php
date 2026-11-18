@@ -56,6 +56,6 @@ trait PostFormAction
     private function deny(string $resource): void
     {
         $acl = $this->_objectManager->get(AclBuilder::class)->getAcl();
-        $acl->deny($this->_auth->getUser()->getRoles(), $resource);
+        $acl->deny(null, $resource);
     }
 }

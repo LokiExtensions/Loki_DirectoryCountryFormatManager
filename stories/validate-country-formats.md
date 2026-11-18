@@ -16,6 +16,9 @@
 **And** the existing country format is kept.
 
 Tests:
+- `Test/Integration/Form/CountryFormatValidatorTest::testDuplicateCountryAndTypeIsRejected`
+- `Test/Integration/Form/CountryFormatValidatorTest::testSameCountryFormatIsNotADuplicateOfItself`
+- `Test/Integration/Form/CountryFormatValidatorTest::testOtherTypeOfSameCountryIsAccepted`
 - `Test/Integration/Form/FormActionTest::testDuplicateCountryAndTypeIsRejected`
 - `Test/Playwright/form-test.spec.ts: rejects a second country format for the same country and type`
 
@@ -26,6 +29,8 @@ Tests:
 **Then** an error message is shown and nothing is stored.
 
 Tests:
+- `Test/Integration/Form/CountryFormatValidatorTest::testMissingCountryAndTypeAreRejected`
+- `Test/Integration/Form/CountryFormatValidatorTest::testUnknownTypeIsRejected`
 - `Test/Integration/Form/FormActionTest::testMissingCountryAndTypeAreRejected`
 - `Test/Integration/Form/FormActionTest::testInvalidTypeIsRejected`
 - `Test/Integration/Component/ProviderTest::testFormFieldsUseModuleOptions`

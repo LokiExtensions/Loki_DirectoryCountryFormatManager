@@ -85,7 +85,7 @@ test.describe('Loki_DirectoryCountryFormatManager form', () => {
                 await grid.open();
                 await grid.addNew();
                 await form.fill('LU', 'pdf', marker + ' DUPLICATE');
-                await form.saveAndContinue();
+                await form.saveAndCloseWithErrors();
 
                 await expectMessage(page, 'error', 'A country format of type "PDF" already exists for the country "Luxembourg".');
 
