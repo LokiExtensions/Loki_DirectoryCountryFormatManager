@@ -7,6 +7,7 @@ import {
     configureWithTheme,
     createCountryFormat,
     deleteTestCountryFormats,
+    expectMessage,
     getButton,
     uniqueMarker,
 } from './helpers/admin-objects';
@@ -44,8 +45,8 @@ test.describe('Loki_DirectoryCountryFormatManager form', () => {
                 await createCountryFormat(page, 'BE', 'oneline', marker + ' {{var city}}', marker);
 
                 const row = grid.getRow(marker);
-                await expect(row).toContainText('BE');
-                await expect(row).toContainText('oneline');
+                await expect(row).toContainText('Belgium (BE)');
+                await expect(row).toContainText('Text One Line');
 
                 await grid.edit(marker);
                 await expect(page).toHaveTitle(/Edit Country Format/);
@@ -64,6 +65,33 @@ test.describe('Loki_DirectoryCountryFormatManager form', () => {
 
                 await form.delete();
                 await expect(grid.getRow(marker)).toHaveCount(0);
+            } finally {
+                await deleteTestCountryFormats(page);
+            }
+        });
+
+        test(`rejects a second country format for the same country and type (${theme.name})`, async ({page}) => {
+            await configureWithTheme(page, withTheme(config, theme));
+            await new AdminLogin(page).login();
+            await deleteTestCountryFormats(page);
+
+            const marker = uniqueMarker('DUPLICATE');
+            const grid = new CountryFormatGridPage(page);
+            const form = new CountryFormatFormPage(page);
+
+            try {
+                await createCountryFormat(page, 'LU', 'pdf', marker + ' ORIGINAL', marker);
+
+                await grid.open();
+                await grid.addNew();
+                await form.fill('LU', 'pdf', marker + ' DUPLICATE');
+                await form.saveAndContinue();
+
+                await expectMessage(page, 'error', 'A country format of type "PDF" already exists for the country "Luxembourg".');
+
+                await grid.open();
+                await expect(grid.getRow(marker)).toHaveCount(1);
+                await expect(grid.getRow(marker)).toContainText(marker + ' ORIGINAL');
             } finally {
                 await deleteTestCountryFormats(page);
             }

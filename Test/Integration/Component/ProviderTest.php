@@ -36,6 +36,30 @@ final class ProviderTest extends TestCase
         $this->assertSame(FormatCollection::class, $block->getData('provider'));
         $this->assertSame(FormatResource::class, $block->getData('resource_model'));
         $this->assertSame('directory_country_format_manager/index/grid', $block->getData('index_url'));
+        $this->assertSame('Loki_DirectoryCountryFormatManager::save', $block->getData('save_acl_resource'));
+        $this->assertSame('Loki_DirectoryCountryFormatManager::delete', $block->getData('delete_acl_resource'));
+    }
+
+    public function testBlocksRequireViewPermission(): void
+    {
+        $this->assertSame(
+            'Loki_DirectoryCountryFormatManager::grid',
+            $this->getBlock('directory_country_format_manager_index_grid', 'directory_country_format_manager.grid')
+                ->getData('acl_resource')
+        );
+        $this->assertSame(
+            'Loki_DirectoryCountryFormatManager::form',
+            $this->getBlock('directory_country_format_manager_index_form', 'directory_country_format_manager.form')
+                ->getData('acl_resource')
+        );
+    }
+
+    public function testGridHasSearchAndFilters(): void
+    {
+        $block = $this->getBlock('directory_country_format_manager_index_grid', 'directory_country_format_manager.grid');
+
+        $this->assertSame(['country_id', 'type', 'format'], array_values((array)$block->getData('searchable_fields')));
+        $this->assertSame(['country_id', 'type'], array_keys((array)$block->getData('grid_filters')));
     }
 
     public static function layoutProvider(): array
@@ -57,6 +81,8 @@ final class ProviderTest extends TestCase
             ['text', 'oneline', 'html', 'pdf'],
             array_column($fields['type']['options']->toOptionArray(), 'value')
         );
+        $this->assertTrue($fields['country_id']['required']);
+        $this->assertTrue($fields['type']['required']);
         $this->assertSame('textarea', $fields['format']['field_type']);
         $this->assertTrue($fields['format']['allow_html']);
     }

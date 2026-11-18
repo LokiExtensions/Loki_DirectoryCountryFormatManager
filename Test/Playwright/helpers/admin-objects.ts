@@ -136,6 +136,11 @@ export function waitForLokiPost(page: Page) {
 /**
  * Find a page action button by its label; the accessible name may start with an icon font glyph (like " Back")
  */
+export async function expectMessage(page: Page, type: 'success' | 'error', text: string) {
+    const messages = page.locator(`.messages .message-${type}, .loki-messages__message[data-message-type="${type}"]`);
+    await expect(messages.filter({hasText: text}).first(), `${type} message "${text}"`).toBeVisible({timeout: 15_000});
+}
+
 export function getButton(page: Page, label: string): Locator {
     const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
