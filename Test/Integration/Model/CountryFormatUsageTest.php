@@ -11,6 +11,7 @@ use Magento\Directory\Model\Country;
 use Magento\TestFramework\Fixture\AppArea;
 use Magento\TestFramework\Fixture\DbIsolation;
 use Magento\TestFramework\Helper\Bootstrap;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -52,6 +53,26 @@ final class CountryFormatUsageTest extends TestCase
         $output = $this->getRenderer('html')->renderArray(self::ADDRESS + ['country_id' => 'NL']);
 
         $this->assertStringContainsString('LOKI-HTML Amsterdam|1234 AB', (string)$output);
+    }
+
+    #[DataProvider('typeProvider')]
+    public function testCountryFormatIsUsedForEveryType(string $type): void
+    {
+        $this->createCountryFormat('NL', $type, 'LOKI-' . $type . ' {{var city}}|{{var postcode}}');
+
+        $output = $this->getRenderer($type)->renderArray(self::ADDRESS + ['country_id' => 'NL']);
+
+        $this->assertStringContainsString('LOKI-' . $type . ' Amsterdam|1234 AB', (string)$output);
+    }
+
+    public static function typeProvider(): array
+    {
+        return [
+            'text' => ['text'],
+            'oneline' => ['oneline'],
+            'html' => ['html'],
+            'pdf' => ['pdf'],
+        ];
     }
 
     public function testCountryFormatIsNotUsedForOtherType(): void
